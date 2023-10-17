@@ -1,0 +1,49 @@
+<!--Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где
+каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить
+пользователю возможность сортировать товары по цене (по возрастанию и по убыванию). -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <p>Список товаров</p>
+        <ul>
+            <li v-for="product in products" :key="product.id">
+                product: {{product.name}} - price: {{product.price}} rub.
+            </li>
+        </ul><br><br>
+        <button @click="highOrderer">Сортировка по возрастанию</button><br>
+        <button @click="lowOrderer">Сортировка по убыванию</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>Vue.createApp({
+            data() {
+                return {
+                    products: [
+                        { id: 1, name: 'Apple', price: 120 },
+                        { id: 2, name: 'Orange', price: 150 },
+                        { id: 3, name: 'Tomato', price: 110 },
+                        { id: 4, name: 'Carrot', price: 80 },
+                    ]
+                };
+            },
+            methods: {
+                highOrderer() {
+                    return this.products.sort((a, b) => a.price - b.price);
+                },
+                lowOrderer() {
+                    return this.products.sort((a, b) => b.price - a.price);
+                }
+            },
+        }).mount('#app');</script>
+</body>
+
+</html>
